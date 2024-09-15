@@ -44,6 +44,25 @@ public class Search {
         }
         return -1;
     }
+
+    // Recursive search
+    public int helper(Node head, int key){
+        if(head==null){
+            return -1;
+        }
+        if(head.data== key){
+            return 0;
+        }
+        int idx = helper(head.next, key);
+        if(idx==-1){
+            return -1;
+        }
+        return idx+1;
+    }
+
+    public int recSearch(int key){
+        return helper(head,key);
+    }
     public static void main(String[] args) {
         Search ll = new Search();
         ll.AddFirst(5);
@@ -53,6 +72,7 @@ public class Search {
         ll.AddFirst(1);
         ll.print();
         System.out.println(ll.itrsearch(5));
+        System.err.println(ll.recSearch(10));
 
     }
 }
