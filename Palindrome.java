@@ -39,6 +39,36 @@ public class Palindrome {
         }
         return slow;
     }
+
+    public boolean Checkpalindrome(){
+        if(head == null || head.next == null){
+            return true;
+        }
+        Node midNode = Findmid(head);
+
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr ;
+            curr = next;
+        }
+        Node right = prev;
+        Node left = head;
+
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+
+        }
+        return true;
+
+    }
     
     public static void main(String[] args) {
         Palindrome ll = new Palindrome();
@@ -46,6 +76,7 @@ public class Palindrome {
         ll.AddFirst(2);
         ll.AddFirst(1);
         ll.print();
+        System.out.println(ll.Checkpalindrome());
     
     }
 }
